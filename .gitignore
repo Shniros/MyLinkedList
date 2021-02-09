@@ -1,2 +1,13 @@
 # Project exclude paths
-/out/
+**/.idea
+**.iml
+**/target
+
+# Maven
+**/log/
+**/target/
+
+#Gradle
+**/build/
+**/gradle/
+**/.gradle/
