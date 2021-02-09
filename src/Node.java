@@ -1,11 +1,10 @@
-import java.util.Iterator;
 
-public class Node {
-    private int value;
+public class Node<E> {
+    private E value;
     private Node next;
     private Node prev;
     public Node(){};
-    public Node(int value){
+    public Node(E value){
         this.value = value;
     }
     public void setNext(Node next) {
@@ -14,7 +13,7 @@ public class Node {
     public void setPrev(Node prev) {
         this.prev = prev;
     }
-    public void setValue(int value) {
+    public void setValue(E value) {
         this.value = value;
     }
     public Node getNext() {
@@ -23,7 +22,7 @@ public class Node {
     public Node getPrev(){
         return prev;
     }
-    public int getValue() {
+    public E getValue() {
         return value;
     }
 

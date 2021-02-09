@@ -1,9 +1,13 @@
+import exception.NoSuchElementException;
+
 import java.util.Iterator;
 
-public class LList{
+public class LList<E>{
     private Node head;
     private Node tail;
-    public void addValueToHead(int value){
+
+    transient int size = 0;
+    public void addValueToHead(E value){
         Node n = new Node(value);
         if(head == null){
             head = n;
@@ -14,41 +18,43 @@ public class LList{
             n.setNext(head);
             head = n;
         }
+        size++;
     }
-    public void delete(int value){
+    public void delete(E value){
         if(head == null){
-            return;
+            throw new NoSuchElementException();
         }
         else if(head == tail && tail.getValue() == value){
             this.head = null;
             this.tail = null;
-            return;
+            size--;
         }
         else if(head.getValue() == value){
             head = head.getNext();
             head.setPrev(null);
+            size--;
         }
         else if(tail.getValue() == value){
             tail = tail.getPrev();
             tail.setNext(null);
+            size--;
         }
         else{
             Node current = this.head;
             while(current != null){
                 if(current.getValue() == value){
-                    //temp.prev | temp | temp.getNext()
                     Node next = current.getNext(); // делаем шаг вперед
                     current = current.getPrev();//возвращаемся на шаг назад
                     current.setNext(next); // связыем пред -> next
                     next.setPrev(current); // пред <- next
                 }
                 current = current.getNext();
+                size--;
             }
         }
     }
-    public void addValueToTail(int value){
+    public void addValueToTail(E value){
         Node n = new Node(value);
-        //System.out.println("dick");
         if(head == null){
             head = n;
             tail = head;
@@ -58,29 +64,10 @@ public class LList{
             n.setPrev(tail);
             tail = n;
         }
+        size++;
     }
-
-    public class Iter implements Iterator {
-        private Node pos;
-        public Iter(){
-            pos = head;
-        }
-        @Override
-        public boolean hasNext() {
-            return pos != null;
-        }
-
-        @Override
-        public Object  next() {
-            if(pos == null){
-                return null;
-            }
-            else {
-                Node temp = pos;
-                pos = pos.getNext();
-                return temp;
-            }
-        }
+    public int getSize() {
+        return size;
     }
 
 }
