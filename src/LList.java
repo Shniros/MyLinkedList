@@ -1,7 +1,5 @@
 import exception.NoSuchElementException;
 
-import java.util.Iterator;
-
 public class LList<E>{
     private Node head;
     private Node tail;
@@ -47,6 +45,7 @@ public class LList<E>{
                     current = current.getPrev();//возвращаемся на шаг назад
                     current.setNext(next); // связыем пред -> next
                     next.setPrev(current); // пред <- next
+                    break;
                 }
                 current = current.getNext();
                 size--;
@@ -69,5 +68,10 @@ public class LList<E>{
     public int getSize() {
         return size;
     }
-
+    public Node getFirst() {
+        return head;
+    }
+    public Node getLast() {
+        return tail;
+    }
 }
