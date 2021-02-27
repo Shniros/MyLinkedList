@@ -1,3 +1,4 @@
+
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -6,12 +7,13 @@ import java.util.List;
 //Проект не закончен поэтому некоторые решения могут показаться странными
 public class Demo {
     public static void main(String [] args){
-        LList p = new LList();
-        p.addValueToHead(10);
-        p.addValueToTail(147);
-        p.addValueToTail(445);
-        p.addValueToTail(255);
-        List<Integer> i = new LinkedList<>();
-
+        MyLinkedList<Integer> p = new MyLinkedList();
+        p.addToHead(10);
+        p.addToTail(147);
+        p.addToTail(445);
+        p.addToTail(255);
+        for(Integer n:p){
+            System.out.println(n);
+        }
     }
 }
